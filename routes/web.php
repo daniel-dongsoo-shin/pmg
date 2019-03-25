@@ -10,11 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('pmg');
 });
+*/
 
+Route::get('/{vue_capture?}', function () {
+    return view('pmg');
+})->where('vue_capture', '[\/\w\.-]*');
+
+Route::post('/login','UserController@login');
+Route::post('/register','UserController@register');
+/*
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+*/

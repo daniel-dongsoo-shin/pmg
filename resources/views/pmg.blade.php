@@ -6,7 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-http://pmg.homestead/ex
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -17,13 +17,8 @@ http://pmg.homestead/ex
 </head>
 <body>
     <div id="app">
-        <h3>Vue Comp</h3>
-        <p>
-            <router-link to="/">Go to Home</router-link>
-            <router-link to="/ex">Go to Ex</router-link>
-        </p>
+        <br>
         <router-view></router-view>
-        <p>End of LIne</p>
     </div>
 </body>
 </html>

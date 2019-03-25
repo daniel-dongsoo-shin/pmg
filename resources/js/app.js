@@ -7,24 +7,37 @@
 
 require('./bootstrap');
 
-//window.Vue = require('vue');
-import Vue from 'vue';
+window.Vue = require('vue');
 
 import VueRouter from 'vue-router'
-import ExampleComponent from './components/ExampleComponent'
-import Home from './components/Home'
-
 Vue.use(VueRouter)
+
+import store from "./store";
+
+import Login from './components/Login'
+import Main from './components/Main'
+import Register from './components/Register'
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
-        { path: "/", component: Home },
-        { path: "/ex", component: ExampleComponent }
+        { path: "/", component: Login },
+        { path: "/register", component: Register },
+        { path: "/main", component: Main,
+            beforeEnter(to, from, next) {
+                if(store.state.authenticated || store.state.over18) {
+                    next();
+                } else {
+                    next("/login");
+                }
+            }
+        },
+        { path: "*", redirect: "/"}
     ]
 })
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store
 });

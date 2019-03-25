@@ -65,4 +65,12 @@ Schema::create('users', function (Blueprint $table) {
 ### Vue & component install
 - npm install
 - npm run dev
-- 
+  
+
+- npm install vue-router
+- npm install vuex
+- //npm install vuelidate  
+
+
+### Create controller
+- php artisan make:controller UserController
