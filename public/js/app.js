@@ -1840,9 +1840,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.current_year - this.birth_year > 18;
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(["setUser", "setAuthenticated", "clearAuthentication", "setOver18", "clearOver18"]), {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])(["setUser", "setAuthenticated", "clearAuthAndOver18", "setOver18"]), {
     logIn: function logIn(e) {
-      //e.preventDefault();
+      this.clearAuthAndOver18();
       console.log("Login");
       var self = this;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/login', {
@@ -1857,16 +1857,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           self.showAuthFailure = false;
           self.$router.push('/main');
         } else {
-          self.clearAuthentication();
           self.showAuthFailure = true;
         }
       }).catch(function (error) {
         //console.log(error);
-        self.clearAuthentication();
         self.showAuthFailure = true;
       });
     },
     checkOver18: function checkOver18() {
+      this.clearAuthAndOver18();
       console.log("checkOver18:");
       console.log(this.isOver18);
 
@@ -1875,7 +1874,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$router.push('/main');
       } else {
         this.showOver18 = true;
-        this.clearOver18();
       }
     }
   }),
@@ -37282,10 +37280,10 @@ var render = function() {
           _c("div", { staticClass: "card-header" }, [_vm._v("Main page")]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _vm.over18 ? _c("h5", [_vm._v("Welcome Guest!")]) : _vm._e(),
-            _vm._v(" "),
             _vm.authenticated
               ? _c("h5", [_vm._v("Welcome " + _vm._s(_vm.user.name) + "!")])
+              : _vm.over18
+              ? _c("h5", [_vm._v("Welcome Guest!")])
               : _vm._e()
           ])
         ])
@@ -53791,14 +53789,12 @@ var registerUrl = "/";
     setAuthenticated: function setAuthenticated(state) {
       state.authenticated = true;
     },
-    clearAuthentication: function clearAuthentication(state) {
+    clearAuthAndOver18: function clearAuthAndOver18(state) {
       state.authenticated = false;
+      state.over18 = false;
     },
     setOver18: function setOver18(state) {
       state.over18 = true;
-    },
-    clearOver18: function clearOver18(state) {
-      state.over18 = false;
     }
   }
 }));

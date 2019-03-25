@@ -74,12 +74,11 @@ export default {
         ...mapMutations([
             "setUser",
             "setAuthenticated",
-            "clearAuthentication",
+            "clearAuthAndOver18",
             "setOver18",
-            "clearOver18",
         ]),
         logIn(e) {
-            //e.preventDefault();
+            this.clearAuthAndOver18();
             console.log("Login");
             let self = this;
             Axios.post('/login',{
@@ -93,16 +92,15 @@ export default {
                     self.showAuthFailure = false;
                     self.$router.push('/main');
                 } else {
-                    self.clearAuthentication();
                     self.showAuthFailure = true;
                 }
             }).catch(function (error) {
                 //console.log(error);
-                self.clearAuthentication();
                 self.showAuthFailure = true;
             });
         },
         checkOver18() {
+            this.clearAuthAndOver18();
             console.log("checkOver18:");
             console.log(this.isOver18);
             if (this.isOver18) {
@@ -110,7 +108,6 @@ export default {
                 this.$router.push('/main');
             } else {
                 this.showOver18 = true;
-                this.clearOver18();
             }
         }
     },

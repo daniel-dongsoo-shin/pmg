@@ -6,8 +6,8 @@
                     <div class="card-header">Main page</div>
 
                     <div class="card-body">
-                        <h5 v-if="over18">Welcome Guest!</h5>
                         <h5 v-if="authenticated">Welcome {{ user.name }}!</h5>
+                        <h5 v-else-if="over18">Welcome Guest!</h5>
                     </div>
                 </div>
             </div>

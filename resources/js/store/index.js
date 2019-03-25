@@ -28,14 +28,12 @@ export default new Vuex.Store({
         setAuthenticated(state) {
             state.authenticated = true;
         },
-        clearAuthentication(state) {
+        clearAuthAndOver18(state) {
             state.authenticated = false;
+            state.over18 = false;
         },
         setOver18(state) {
             state.over18 = true;
-        },
-        clearOver18(state) {
-            state.over18 = false;
-        },
+        }
     }
 });
