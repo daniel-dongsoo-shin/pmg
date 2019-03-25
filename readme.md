@@ -8,7 +8,9 @@
 
 - npm install
   
-- copy .env.example to .env & set DB env
+- copy .env.example to .env & set DB connection information
+
+(in my case)
 ```
 DB_CONNECTION=mysql
 DB_HOST=192.168.10.1
@@ -24,4 +26,4 @@ DB_PASSWORD=12345_Abc
 
 - npm run dev
 
-- Browsing, http://pmg.homestead/ 
+- Browsing, http://pmg.homestead/ (in my case)
